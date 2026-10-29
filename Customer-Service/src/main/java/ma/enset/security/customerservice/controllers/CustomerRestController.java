@@ -3,7 +3,7 @@ package ma.enset.security.customerservice.controllers;
 
 import ma.enset.security.customerservice.entities.Customer;
 import ma.enset.security.customerservice.service.CustomerService;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -14,14 +14,17 @@ public class CustomerRestController {
     public CustomerRestController(CustomerService customerService) {
         this.customerService = customerService;
     }
+    @GetMapping("/customers")
 
     public List<Customer> getAllCustomers() {
         return customerService.getAllCustomers();
     }
-    public Customer findCustomerById(Long id) {
+    @GetMapping("/customers/{id}")
+    public Customer findCustomerById(@PathVariable Long id) {
         return customerService.findCustomerById(id);
     }
-    public Customer saveCustomer(Customer customer) {
+    @PostMapping("/customers")
+    public Customer saveCustomer(@RequestBody Customer customer) {
         return customerService.saveCustomer(customer);
     }
 

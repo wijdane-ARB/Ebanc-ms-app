@@ -1,7 +1,13 @@
 package ma.enset.security.customerservice;
 
+import ma.enset.security.customerservice.entities.Customer;
+import ma.enset.security.customerservice.service.CustomerService;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class CustomerServiceApplication {
@@ -10,4 +16,18 @@ public class CustomerServiceApplication {
         SpringApplication.run(CustomerServiceApplication.class, args);
     }
 
+    @Bean
+    CommandLineRunner commandLineRunner(CustomerService customerService) {
+        return args -> {
+            List<String > names = List.of("Wijdane", "Amine", "Hanane");
+            names.forEach(name -> {
+                customerService.saveCustomer(Customer.builder()
+                        .name(name).email(name + "@gmail.com").build());
+            });
+
+        };
+    }
+
 }
+
+
