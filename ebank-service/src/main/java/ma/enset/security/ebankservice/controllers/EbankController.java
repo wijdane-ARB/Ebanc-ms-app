@@ -14,15 +14,15 @@ public class EbankController {
         this.ebankService = ebankService;
     }
 
-    @GetMapping("/bank-accounts/{id}")
+    @GetMapping("/accounts")
     public List<BankAccount> getAllBankAccounts() {
         return ebankService.getAllBankAccounts();
     }
-    @GetMapping("/bank-accounts/customer/{id}")
+    @GetMapping("/accounts/customer/{id}")
     public BankAccount getBankAccountByCustomerId(@PathVariable String id) {
         return ebankService.getBankAccountByCustomerId(id);
     }
-    @PostMapping("/bank-accounts")
+    @PostMapping("/accounts")
     public BankAccount save(@RequestBody BankAccount bankAccount) {
         return ebankService.save(bankAccount);
     }
